@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>绑定多重值</title>
+    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--设立一个div-->
+    <div>
+        <!--对于这个div绑定一个display属性-->
+        <div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">绑定多重值</div>
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+
+        }
+    })
+</script>
+</body>
+</html>

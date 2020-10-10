@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>自动添加前缀</title>
+    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--设立一个div，其长宽均为100px，背景为绿色-->
+    <div style="padding: 100px">
+        <!--对于这个div绑定一个transform属性-->
+        <div style="width: 100px;height: 100px;background: green;color:#fff" v-bind:style="{transform:transformVal}">旋转div</div>
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+//            赋值样式属性
+            transformVal: 'rotate(7deg)'
+        }
+    })
+</script>
+</body>
+</html>

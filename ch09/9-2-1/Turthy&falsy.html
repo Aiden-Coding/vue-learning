@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>turthy&falsy</title>
+</head>
+<body>
+    <script>
+//       字符串0为真值
+        let x = "0";
+        if(x){
+//            该输出会执行
+            console.log("string 0 is Truthy.")
+        } else {
+            console.log("string 0 is Falsy.")
+        }
+//        数字0为falsy
+        let x1 = 0;
+        if(x1){
+            console.log("0 is Truthy.")
+        } else {
+//            该输出会执行
+            console.log("0 is Falsy.")
+        }
+//      空数组也为真值（存在）
+        let y = [];
+        if(y){
+//            该输出执行
+            console.log("empty array is Truthy.")
+        } else {
+            console.log("empty array is Falsy.")
+        }
+    </script>
+</body>
+</html>
