@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>修饰符表单</title>
+    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+</head>
+<body>
+<div id="app" style="display: flex;justify-content: center;">
+    <!--设立一个div-->
+    <div>
+        <h2>修饰符表单</h2>
+        <br>
+        <!--修饰符的应用.lazy-->
+        <label>lazy修饰符</label>
+        <input v-model.lazy="input1" placeholder="lazy修饰符">
+        <br> <br>
+        <!--修饰符的应用.number-->
+        <label>number修饰符</label>
+        <input v-model.number="input2" placeholder="number修饰符">
+        <br> <br>
+        <!--修饰符的应用.trim-->
+        <label>trim修饰符</label>
+        <input v-model.trim="input3" placeholder="trim修饰符">
+        <br> <br>
+        <!--修饰符的应用.lazy-->
+        <label>lazy修饰符</label>
+        {{this.input1}}
+        <br> <br>
+        <!--修饰符的应用.number-->
+        <label>number修饰符</label>
+        {{this.input2}}
+        <br> <br>
+        <!--修饰符的应用.trim-->
+        <label>trim修饰符</label>
+        {{this.input3}}
+        <br> <br>
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+//        预设其绑定的值
+        data: {
+            input1: '',
+            input2: '',
+            input3: '',
+        },
+        // 在`methods`对象中定义方法
+        methods: {
+//            定义方法……
+        }
+    })
+</script>
+</body>
+</html>

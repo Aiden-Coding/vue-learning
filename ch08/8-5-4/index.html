@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>完整表单</title>
+    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+</head>
+<body>
+<div id="app" style="display: flex;justify-content: center;">
+    <!--设立一个div-->
+    <div>
+        <h2>注册表单</h2>
+        <br>
+        <!--input的应用-->
+        <label>用户名称</label>
+        <input v-model="username" placeholder="用户名称">
+        <br> <br>
+        <label>密码</label>
+        <input type="password" v-model="password" placeholder="输入密码">
+        <br> <br>
+        <label>重复输入密码</label>
+        <input type="password" v-model="rePassword" placeholder="重复输入密码">
+        <br> <br>
+        <label>性别</label>
+        <input type="radio" id="male" value="male" v-model="sex">
+        <label for="male">male</label>
+        <input type="radio" id="female" value="female" v-model="sex">
+        <label for="female">female</label>
+        <br> <br>
+        <label>爱好</label>
+        <input type="checkbox" id="basketball" value="篮球" v-model="hobby">
+        <label for="basketball">篮球</label>
+        <input type="checkbox" id="football" value="足球" v-model="hobby">
+        <label for="football">足球</label>
+        <input type="checkbox" id="other" value="其他" v-model="hobby">
+        <label for="other">其他</label>
+        <br> <br>
+        <label>职业</label>
+        <select v-model="work">
+            <option disabled value="">请选择</option>
+            <option>学生</option>
+            <option>工作</option>
+            <option>其他</option>
+        </select>
+        <br> <br>
+        <label>备注</label>
+        <textarea v-model="note" placeholder="备注"></textarea>
+        <br> <br>
+        <button v-on:click="submit">提交</button>
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+//        预设其绑定的值
+        data: {
+            username: '',
+            password: '',
+            rePassword: '',
+            sex: '',
+            hobby: [],
+            work: '',
+            note: ''
+        },
+        // 在`methods`对象中定义方法
+        methods: {
+//            点击提交之后会执行的代码，
+//            展示所有的用户提交资料
+            submit() {
+                if (this.password === this.rePassword) {
+                    let con = confirm("用户名：" + this.username + ' 性别：' + this.sex + ' 爱好：' + this.hobby.join('-') + ' 职业：' + this.work + ' 备注：' + this.note); //在页面上弹出对话框
+                    if (con) alert("提交成功");
+                    // 在这里可以对于所有的数据进行post或者是get等方式的服务器请求
+                    else alert("取消提交");
+
+                } else {
+                    alert("两次密码输入不一致！")
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

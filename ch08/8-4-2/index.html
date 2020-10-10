@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>表单</title>
+    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--设立一个div-->
+    <div>
+        <!--相应的表单元件-->
+        <span>message is：</span>
+        <p style="white-space:pre-line;">{{ message }}</p>
+        <br>
+        <textarea v-model="message" placeholder="多行文本"></textarea>
+
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            message:''
+        },
+        // 在`methods`对象中定义方法
+        methods: {
+
+        }
+
+    })
+</script>
+</body>
+</html>

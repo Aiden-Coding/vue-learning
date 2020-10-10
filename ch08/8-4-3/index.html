@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>表单</title>
+    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--设立一个div-->
+    <div>
+        <!--相应的表单元件-->
+        <input type="checkbox" id="name1" value="张三" v-model="checkedNames">
+        <label for="name1">张三</label>
+        <input type="checkbox" id="name2" value="李四" v-model="checkedNames">
+        <label for="name2">李四</label>
+        <input type="checkbox" id="name3" value="王二" v-model="checkedNames">
+        <label for="name3">王二</label>
+        <br>
+        <span>Checked names： {{ checkedNames }}</span>
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            checkedNames: []
+        },
+        // 在`methods`对象中定义方法
+        methods: {}
+
+    })
+</script>
+</body>
+</html>

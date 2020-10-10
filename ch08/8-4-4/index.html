@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>表单</title>
+    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--设立一个div-->
+    <div>
+        <!--相应的表单元件-->
+            <input type="radio" id="one" value="One" v-model="picked">
+            <label for="one">One</label>
+            <br>
+            <input type="radio" id="two" value="Two" v-model="picked">
+            <label for="two">Two</label>
+            <br>
+            <span>选择了： {{ picked }}</span>
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            picked:''
+        },
+        // 在`methods`对象中定义方法
+        methods: {
+
+        }
+
+    })
+</script>
+</body>
+</html>
