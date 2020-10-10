@@ -1,4 +1,4 @@
 export default function bar() {
   //
-  alert("这是bar中的方法")
+  alert("杩欐槸bar涓殑鏂规硶")
 }
