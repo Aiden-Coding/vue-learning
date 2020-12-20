@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+    <style>
+      .active {
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <div id="app">
+      <ul>
+        <!-- class绑定 -->
+        <li
+          v-for="c in courses"
+          :class="{active: (selectedCourse === c)}"
+          @click="selectedCourse = c"
+        >
+          {{c}}
+        </li>
+        <!-- style绑定 -->
+        <!-- <li v-for="c in courses" :style="{backgroundColor: (selectedCourse === c)?'#ddd':'transparent'}" @click="selectedCourse = c">{{c}}</li> -->
+        <p>
+          <!-- 绑定表达式 -->
+          <!-- 课程总数：{{courses.length + '门'}} -->
+          <!-- 计算属性 -->
+          <!-- 课程总数：{{total}} -->
+          <!-- 监听器 -->
+          课程总数：{{totalCount}}
+        </p>
+      </ul>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          // 保存选中项
+          courses: ['web全栈', 'web高级'],
+          course: '',
+          selectedCourse: '',
+        },
+        methods: {
+          addCourse() {
+            this.courses.push(this.course);
+          },
+        },
+        computed: {
+          total() {
+            return this.courses.length + '门';
+          },
+        },
+        // 下面这种不能生效，因为初始化时不会触发
+        // watch: {
+        // courses(newValue, oldValue) {
+        // this.totalCount = newValue.length + '门'
+        // }
+        // },
+        watch: {
+          courses: {
+            //这样使用watch时有一个特点，就是当值第一次绑定的时候，不会执行监听函数，只有值发生改变才会执行。如果我们需要在最初绑定值的时候也执行函数，则就需要用到immediate属性。
+            //当父组件向子组件动态传值时，子组件props首次获取到父组件传来的默认值时，也需要执行函数，此时就需要将immediate设为true
+            immediate: true,
+            //当需要监听一个对象的改变时，普通的watch方法无法监听到对象内部属性的改变，只有data中的数据才能够监听到变化，此时就需要deep属性对对象进行深度监听。
+            // deep: true,
+            handler(newValue, oldValue) {
+              this.totalCount = newValue.length + '门';
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
