@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>自定义组件</title>
+    <script src="../vue.js"></script>
+  </head>
+
+  <body>
+    <!-- 自定义组件 -->
+    <div id="app">
+      <!-- 表单输入绑定 -->
+      <input v-model="course" type="text" v-on:keydown.enter="addCourse" />
+      <!-- 事件处理 -->
+      <button v-on:click="addCourse">新增课程</button>
+      <course-list :courses="courses"></course-list>
+      <!-- 监听组件事件 -->
+      <course-add @add-course="addCourse"></course-add>
+    </div>
+    <script>
+      // 组件注册
+      Vue.component('course-add', {
+        data() {
+          return {
+            course: '', // 将course从父组件提取到course-add维护
+          };
+        },
+        template: `<div><!-- 表单输入绑定 --> <input v-model="course" @keydown.enter="addCourse"/> <!-- 事件处理 --> <button v-on:click="addCourse">新增课程</button> </div> `,
+        methods: {
+          addCourse() {
+            // 发送自定义事件通知父组件 // 注意事件名称定义时不要有大写字母出现
+            this.$emit('add-course', this.course);
+            this.course = '';
+          },
+        },
+      });
+      // 注册course-list组件
+      Vue.component('course-list', {
+        data() {
+          return {
+            // 改状态属于course-list内部状态，因此作为数据
+            selectedCourse: '',
+          };
+        },
+        props: {
+          // 新增课程时也要访问courses，因此作为属性传递
+          courses: { type: Array, default: [] },
+        },
+        template: `<div><!-- 条件渲染 --> <p v-if="courses.length == 0">没有任何课程信息</p> <!-- 列表渲染 --> <ul><!-- class绑定 --> <li v-for="c in courses" :class="{active: (selectedCourse === c)}" @click="selectedCourse = c">{{c}}</li> <!-- style绑定 --> <!-- <li v-for="c in courses" :style="{backgroundColor: (selectedCourse === c)?'#ddd':'transparent'}" @click="selectedCourse = c">{{c}}</li> --> </ul> </div> `,
+      });
+      const app = new Vue({
+        el: '#app',
+        data: { title: '开课吧购物车', courses: ['web全栈', 'web高级'], course: '' },
+        methods: {
+          addCourse() {
+            this.courses.push(this.course);
+          },
+          addCourse(course) {
+            this.courses.push(course);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
